@@ -1,0 +1,147 @@
+===============================================================================================================================
+*FIXED* Some user's do not have "FraudAlert", "LegalAction", "AsistDisabled" info in Argos, exception needs to be handled
+===============================================================================================================================
+  {'name': 'jdparker1', 'luid': 'L30230478', 'un': 'jdparker1', 'qu': 'HD_General_en', 'tik': '', 'uType': 'other'}
+
+  Traceback (most recent call last):
+    File "C:\dev\hasty\wxGUI.py", line 425, in m_buttonPickupOnButtonClick
+      self.callerLookup(self.username)
+    File "C:\dev\hasty\wxGUI.py", line 592, in callerLookup
+      self.m_textInfo.write("Fraud Alert: " + self.lookup[3][0] + "\n")
+  IndexError: list index out of range
+
+  Traceback (most recent call last):
+    File "C:\dev\hasty\wxGUI.py", line 350, in m_buttonSearchUsernameOnButtonClick
+      self.callerLookup(self.username)
+    File "C:\dev\hasty\wxGUI.py", line 592, in callerLookup
+      self.m_textInfo.write("Fraud Alert: " + self.lookup[3][0] + "\n")
+  IndexError: list index out of range
+===============================================================================================================================
+
+===============================================================================================================================
+*FIXED* User's claiming accounts can have an account appear in Argos that causes an issue because Service Now doesn't have the user yet
+===============================================================================================================================
+  Traceback (most recent call last):
+    File "C:\dev\hasty\wxGUI.py", line 350, in m_buttonSearchUsernameOnButtonClick
+      self.callerLookup(self.username)
+    File "C:\dev\hasty\wxGUI.py", line 581, in callerLookup
+      self.m_textInfo.write("LUID: " + self.luid + "\n")
+  AttributeError: 'HD_Tools' object has no attribute 'luid'
+
+  Traceback (most recent call last):
+    File "C:\dev\hasty\wxGUI.py", line 350, in m_buttonSearchUsernameOnButtonClick
+      self.callerLookup(self.username)
+    File "C:\dev\hasty\wxGUI.py", line 581, in callerLookup
+      self.m_textInfo.write("LUID: " + self.luid + "\n")
+  AttributeError: 'HD_Tools' object has no attribute 'luid'
+
+  Traceback (most recent call last):
+    File "C:\dev\hasty\wxGUI.py", line 350, in m_buttonSearchUsernameOnButtonClick
+      self.callerLookup(self.username)
+    File "C:\dev\hasty\wxGUI.py", line 592, in callerLookup
+      self.m_textInfo.write("Fraud Alert: " + self.lookup[3][0] + "\n")
+  IndexError: list index out of range
+
+  {'u_template': 'Account Access (Claim Account)', 'u_username': 'LVUONG1', 'u_caller': None, 'u_id_number': 'L30231257', 'u_phone_number': '6572562567', 'u_department': None, 'u_student_type': None, 'cmdb_ci': None, 'assigned_to': 'cmaloy', 'time_worked': '1970-01-01 00:17:27', 'u_queue': None, 'call_type': None, 'u_operating_system': None, 'short_description': None, 'work_notes': 'User called in to claim account\nNAME: Louis Vuong\nUSERNAME: lvuong1\nError when claiming account before pw set\nVerified users Zip/DOB/Last 4 of SSN\nStepped user through claim\nHad user click "I live outside the US"\nError encountered PRB0045692\nConfirmed user could login\n\n', 'comments': None, 'u_used_kb': None, 'u_webex': False, 'u_firstcall_resolution': True, 'u_transfer': None, 'u_transfer_internal': None, 'u_transfer_list': None, 'u_transfer_queue': None, 'u_complaint': None, 'u_complaint_comments': None, 'parent': 'PRB0045692'}
+
+  {'result': []}
+
+  Traceback (most recent call last):
+    File "C:\dev\hasty\wxGUI.py", line 522, in m_buttonSubmitOnButtonClick
+      SN.fromGUI(call_doc)
+    File "C:\dev\hasty\tools\sn\sn.py", line 200, in fromGUI
+      main()
+    File "C:\dev\hasty\tools\sn\sn.py", line 183, in main
+      get_user()
+    File "C:\dev\hasty\tools\sn\sn.py", line 118, in get_user
+      call_doc['u_caller'] = data['result'][0]['sys_id']
+  IndexError: list index out of range
+===============================================================================================================================
+
+===============================================================================================================================
+*FIXED* If Argos closes, window needs to be reinitialized and search needs to be rerun
+===============================================================================================================================
+  Traceback (most recent call last):
+    File "C:\Users\cmattingly\Desktop\hasty\wxGUI.py", line 350, in m_buttonSearchUsernameOnButtonClick
+      self.callerLookup(self.username)
+    File "C:\Users\cmattingly\Desktop\hasty\wxGUI.py", line 544, in callerLookup
+      self.lookup = argos.search(id)
+    File "C:\Users\cmattingly\Desktop\hasty\tools\argos\argosScrape.py", line 136, in search
+      EC.presence_of_element_located((By.XPATH, '//*[@id="datablock"]/div[5]/div/div[1]/div[7]/input'))
+    File "C:\Users\cmattingly\AppData\Local\Programs\Python\Python37-32\lib\site-packages\selenium\webdriver\support\wait.py", line 71, in until
+      value = method(self._driver)
+    File "C:\Users\cmattingly\AppData\Local\Programs\Python\Python37-32\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in __call__
+      return _find_element(driver, self.locator)
+    File "C:\Users\cmattingly\AppData\Local\Programs\Python\Python37-32\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 415, in _find_element
+      raise e
+    File "C:\Users\cmattingly\AppData\Local\Programs\Python\Python37-32\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 411, in _find_element
+      return driver.find_element(*by)
+    File "C:\Users\cmattingly\AppData\Local\Programs\Python\Python37-32\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+      'value': value})['value']
+    File "C:\Users\cmattingly\AppData\Local\Programs\Python\Python37-32\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+      self.error_handler.check_response(response)
+    File "C:\Users\cmattingly\AppData\Local\Programs\Python\Python37-32\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+      raise exception_class(message, screen, stacktrace)
+  selenium.common.exceptions.WebDriverException: Message: chrome not reachable
+    (Session info: chrome=70.0.3538.77)
+    (Driver info: chromedriver=2.42.591088 (7b2b2dca23cca0862f674758c9a3933e685c27d5),platform=Windows NT 10.0.16299 x86_64)
+===============================================================================================================================
+
+===============================================================================================================================
+===============================================================================================================================
+  {'name': '-', 'luid': 'L30061123', 'un': '-', 'qu': 'HD_Account_en', 'tik': 'True', 'uType': 'other'}
+  Traceback (most recent call last):
+    File "C:\Users\jlangford7\Documents\dev\hasty\wxGUI.py", line 437, in m_buttonPickupOnButtonClick
+      self.callerLookup(self.luid)
+    File "C:\Users\jlangford7\Documents\dev\hasty\wxGUI.py", line 598, in callerLookup
+      self.m_textInfo.write("Address: " + adr + "\n")
+  UnboundLocalError: local variable 'adr' referenced before assignment
+
+
+  {'name': '-', 'luid': 'L29969555', 'un': '-', 'qu': 'HD_Account_en', 'tik': '', 'uType': 'fac/staff'}
+  Traceback (most recent call last):
+    File "C:\Users\jlangford7\Documents\dev\hasty\wxGUI.py", line 440, in m_buttonPickupOnButtonClick
+      self.callerLookup(self.luid)
+    File "C:\Users\jlangford7\Documents\dev\hasty\wxGUI.py", line 603, in callerLookup
+      self.m_textInfo.write("Address: " + adr + "\n")
+  UnboundLocalError: local variable 'adr' referenced before assignment
+  Traceback (most recent call last):
+    File "C:\Users\jlangford7\Documents\dev\hasty\wxGUI.py", line 357, in m_buttonSearchUsernameOnButtonClick
+      self.callerLookup(self.username)
+    File "C:\Users\jlangford7\Documents\dev\hasty\wxGUI.py", line 603, in callerLookup
+      self.m_textInfo.write("Address: " + adr + "\n")
+  UnboundLocalError: local variable 'adr' referenced before assignment
+
+  ----- CALLER LOOKUP -----
+  Name: Alvin Abraham
+  ----- CALLER LOOKUP -----
+  Name: Alvin Abraham
+
+===============================================================================================================================
+
+
+===============================================================================================================================
+===============================================================================================================================
+{'name': 'cthinton', 'luid': 'L28448739', 'un': 'cthinton', 'qu': 'HD_General_en', 'tik': '', 'uType': 'fac/staff'}
+[19656:2408:1119/112225.413:ERROR:ssl_client_socket_impl.cc(1061)] handshake failed; returned -1, SSL error code 1, net_error -100
+{'u_template': 'Permissions Request', 'u_username': 'CTHINTON', 'u_caller': None, 'u_id_number': 'L28448739', 'u_phone_number': '5402870229', 'u_department': None, 'u_student_type': None, 'cmdb_ci': None, 'assigned_to': 'ajrye', 'time_worked': '1970-01-01 00:14:01', 'u_queue': None, 'call_type': None, 'u_operating_system': None, 'short_description': None, 'work_notes': 'User called to request permissions to be able to impersonate a student in the Coure Request Form;\nHad user try another browser, same issue;\nCreated support ticket and adv for user to have his supervisor attach permission', 'comments': None, 'u_used_kb': None, 'u_webex': False, 'u_firstcall_resolution': False, 'u_transfer': None, 'u_transfer_internal': None, 'u_transfer_list': None, 'u_transfer_queue': None, 'u_complaint': None, 'u_complaint_comments': None, 'parent': 'TKT0394305'}
+{'result': [{'sys_id': 'e956868713d32a003619b2776144b056', 'phone': '+14345925648', 'department': {'link': 'https://liberty.service-now.com/api/now/table/cmn_department/9916d2a20a0a3c9e00f019884ca8d3bf', 'value': '9916d2a20a0a3c9e00f019884ca8d3bf'}}]}
+Traceback (most recent call last):
+  File "C:\users\ajrye\desktop\hasty\wxGUI.py", line 532, in m_buttonSubmitOnButtonClick
+    SN.fromGUI(call_doc)
+  File "C:\users\ajrye\desktop\hasty\tools\sn\sn.py", line 212, in fromGUI
+    main()
+  File "C:\users\ajrye\desktop\hasty\tools\sn\sn.py", line 204, in main
+    data = post()
+  File "C:\users\ajrye\desktop\hasty\tools\sn\sn.py", line 50, in post
+    data = response.json()
+  File "C:\Users\ajrye\AppData\Local\Programs\Python\Python37-32\lib\site-packages\requests\models.py", line 897, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "C:\Users\ajrye\AppData\Local\Programs\Python\Python37-32\lib\json\__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "C:\Users\ajrye\AppData\Local\Programs\Python\Python37-32\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Users\ajrye\AppData\Local\Programs\Python\Python37-32\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+===============================================================================================================================

@@ -1,0 +1,2 @@
+py hasty.py
+pause
